@@ -14,7 +14,7 @@ const routes = [
     name: 'Home',
     component: () => import('../components/login.vue')
   },
-]
+] 
 
 const router = new VueRouter({
   routes
