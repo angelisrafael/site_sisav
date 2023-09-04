@@ -1,16 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.avif">
-  <login msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" src="./assets/logo.png">
+  <teste msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
 // import cadastroCliente from './components/cadastroCliente.vue'
-import login from './components/login.vue'
+import teste from './components/mostrarVeiculos.vue'
 
 export default {
   name: 'App',
   components: {
-    login
+    teste
   }
 }
 </script>
