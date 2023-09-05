@@ -1,43 +1,55 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import {createRouter, createWebHashHistory} from 'vue-router'
 
-Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/cadastroCliente',
-    name: 'Home',
+    name: 'cadastroCliente',
     component: () => import('../components/cadastroCliente.vue')
   },
   {
     path: '/login',
-    name: 'Home',
+    name: 'loginForm',
     component: () => import('../components/login.vue')
   },
   {
     path: '/atualizarCliente',
-    name: 'Home',
+    name: 'atualizarCliente',
     component: () => import('../components/atualizarCliente.vue')
   },
-  {
-    path: '/listaCliente',
-    name: 'Home',
-    component: () => import('../components/listaClientes.vue')
-  },
+  // {
+  //   path: '/listaCliente',
+  //   name: 'Home',
+  //   component: () => import('../components/listarClientes.vue')
+  // },
   {
     path: '/mostrarVeiculos',
-    name: 'Home',
+    name: 'MostrarVeiculo',
     component: () => import('../components/mostrarVeiculos.vue')
   },
   {
     path: '/telaPrincipal',
-    name: 'Home',
+    name: 'telaPrincipal',
     component: () => import('../components/telaPrincipal.vue')
+  },
+  {
+    path: '/cadastroCarro',
+    name: 'cadastroCarro',
+    component: () => import('../components/cadastroCarro.vue')
+  },
+
+  {
+    path: '/cadastroUsuario',
+    name: 'cadastroUsuario',
+    component: () => import('../components/cadastroUsuario.vue')
   },
 ] 
 
-const router = new VueRouter({
+const router = createRouter({
+  history: createWebHashHistory(),
   routes
 })
+
+
 
 export default router

@@ -1,9 +1,9 @@
 <template>
      <div class="container">
         <div class="button-container">
-            <button class="button">Botão 1</button>
-            <button class="button">Botão 2</button>
-            <button class="button">Botão 3</button>
+            <button class="button">Cadastrar cliente</button>
+            <button class="button">Cadastrar usuário</button>
+            <button class="button">Cadastrar carro</button>
             <button class="button">Botão 4</button>
         </div>
     </div>
@@ -31,7 +31,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
         .button-container {
@@ -42,9 +41,9 @@
         }
 
         .button {
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: #fff;
+            padding: 20px 30px;
+            background-color: #7fb9f6;
+            color: #fbfbfb;
             border: none;
             border-radius: 5px;
             font-size: 18px;
@@ -53,7 +52,7 @@
         }
 
         .button:hover {
-            background-color: #0056b3;
+            background-color: #408ee2;
         }
  </style>
  

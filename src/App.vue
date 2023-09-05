@@ -1,17 +1,14 @@
 <template>
+  <h1>VA locs</h1>
   <img alt="Vue logo" src="./assets/logo.png">
-  <teste msg="Welcome to Your Vue.js App"/>
+  <router-view></router-view>
 </template>
 
 <script>
-// import cadastroCliente from './components/cadastroCliente.vue'
-import teste from './components/mostrarVeiculos.vue'
 
 export default {
   name: 'App',
-  components: {
-    teste
-  }
+  components: {}
 }
 </script>
 
