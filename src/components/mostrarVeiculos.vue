@@ -1,30 +1,63 @@
 <template>
     <div class="container">
         <header>
-        <h1>Locadora de carros</h1>
+        <h1>VA locs</h1>
     </header>
     <div class="container">
         <h2>Carros em Destaque</h2>
         <div class="movie-list">
             <div class="movie">
-                <img src="carro1.jpg" alt="Filme 1">
+                <img src="../assets/carro1.jpeg" alt="carro 1">
                 <h3>hb20</h3>
-                <p>Descrição do Filme 1.</p>
+                <p>Ano: 2022
+                    4 portas
+                    Ar-condicionado
+                    Vidro elétrico
+                    Trava elétrica
+                    Air bag
+                    Dir. Hidráulica
+                    ABS
+                    1 mala(s) grande(s)
+                    1 mala(s) pequena(s)
+                    4 pessoas
+                </p>
             </div>
             <div class="movie">
-                <img src="../assets/carro1.jpeg" alt="Filme 2">
-                <h3>Filme 2</h3>
-                <p>Descrição do Filme 2.</p>
+                <img src="../assets/carro2.jpeg" alt="carro 2">
+                <h3>corolla cross</h3>
+                <p>Ano: 2022
+                    4 portas
+                    Ar-condicionado
+                    Vidro elétrico
+                    Trava elétrica
+                    Air bag
+                    Dir. Hidráulica
+                    ABS
+                    1 mala(s) grande(s)
+                    1 mala(s) pequena(s)
+                    5 pessoas
+                </p>
             </div>
             <div class="movie">
-                <img src="carro3.jpg" alt="Filme 3">
-                <h3>Filme 3</h3>
-                <p>Descrição do Filme 3.</p>
+                <img src="../assets/carro3.jpeg" alt="carro 3">
+                <h3>honda civic</h3>
+                <p>Ano: 2022
+                    4 portas
+                    Ar-condicionado
+                    Vidro elétrico
+                    Trava elétrica
+                    Air bag
+                    Dir. Hidráulica
+                    ABS
+                    1 mala(s) grande(s)
+                    1 mala(s) pequena(s)
+                    5 pessoas
+                </p>
             </div>
         </div>
     </div>
     <footer>
-        <p>&copy; 2023 Locadora de Filmes</p>
+        <p>&copy; 2023 Locadora de carros VA locs</p>
     </footer>
      </div>
  </template>
