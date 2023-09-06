@@ -17,11 +17,11 @@ const routes = [
     name: 'atualizarCliente',
     component: () => import('../components/atualizarCliente.vue')
   },
-  // {
-  //   path: '/listaCliente',
-  //   name: 'Home',
-  //   component: () => import('../components/listarClientes.vue')
-  // },
+  {
+    path: '/listaCliente',
+    name: 'listaCliente',
+    component: () => import('../components/listarClientes.vue')
+  },
   {
     path: '/mostrarVeiculos',
     name: 'MostrarVeiculo',
@@ -42,6 +42,11 @@ const routes = [
     path: '/cadastroUsuario',
     name: 'cadastroUsuario',
     component: () => import('../components/cadastroUsuario.vue')
+  },
+  {
+    path: '/cadastroLocacao',
+    name: 'cadastroLocacao',
+    component: () => import('../components/cadastroLocacao.vue')
   },
 ] 
 

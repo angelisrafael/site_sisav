@@ -38,7 +38,7 @@
          .container {
              max-width: 400px;
              margin: 50 auto;
-             padding: 20px;
+             padding: 50px;
              background-color: #fff;
              box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
              border-radius: 5px;

@@ -1,27 +1,25 @@
 <template>
     <div class="container">
-         <h2>Cadastro de Cliente</h2>
+         <h2>Cadastro de locação</h2>
          <form action="#" method="post">
-            <label for="nome">Nome antigo:</label>
-             <input type="text" id="nome" name="nome" required>
+             <label for="cliente">Cliente:</label>
+             <input type="text" id="cliente" name="cliente" required>
 
-             <label for="nome">Novo nome:</label>
-             <input type="text" id="nome" name="nome" required>
+             <label for="carro">Carro:</label>
+             <input type="text" id="carro" name="carro" required>
              
-             <label for="email">Novo email:</label>
-             <input type="email" id="email" name="email" required>
              
-             <label for="senha">Nova senha:</label>
-             <input type="password" id="senha" name="senha" required>
+             <label for="placa">Placa:</label>
+             <input type="text" id="placa" name="placa" required>
              
-             <button type="submit">Atualizar</button>
+             <button type="submit">Cadastrar</button>
          </form>
      </div>
  </template>
  
  <script>
  export default {
-   name: 'atualizarCliente',
+   name: 'cadastroLocacao',
    props: {
      msg: String
    }
@@ -39,7 +37,7 @@
          
          .container {
              max-width: 400px;
-             margin: 0 auto;
+             margin: 50 auto;
              padding: 50px;
              background-color: #fff;
              box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
