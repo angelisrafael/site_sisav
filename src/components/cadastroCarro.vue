@@ -1,7 +1,7 @@
 <template>
     <div class="container">
          <h2>Cadastro de carro</h2>
-         <form action="#" method="post">
+         <form action="http://localhost:8080/api/carro/save" method="post">
              <label for="marca">Marca:</label>
              <input type="text" id="marca" name="marca" required>
 
