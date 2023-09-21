@@ -10,17 +10,23 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'listaCliente',
   data() {
     return {
-      clientes: [
-        { id: 1, nome: 'Cliente 1', email: 'cliente1@example.com' },
-        { id: 2, nome: 'Cliente 2', email: 'cliente2@example.com' },
-        { id: 3, nome: 'Cliente 3', email: 'cliente3@example.com' },
-        // Adicione mais clientes conforme necessário
-      ]
+      clientes: []
     };
+  },
+  created() {
+    axios.get('http://localhost:8080/api/cliente/get-all')
+      .then(response => {
+        console.log(response.data)
+        this.clientes = response.data;
+      })
+      .catch(error => {
+        console.error('Erro ao obter os dados:', error);
+      });
   },
   props: {
     msg: String

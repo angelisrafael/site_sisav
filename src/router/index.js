@@ -48,6 +48,11 @@ const routes = [
     name: 'cadastroLocacao',
     component: () => import('../components/cadastroLocacao.vue')
   },
+  {
+    path: '/listarLocacoes',
+    name: 'listarLocacoes',
+    component: () => import('../components/listarLocacoes.vue')
+  },
 ] 
 
 const router = createRouter({

@@ -2,25 +2,35 @@
     <div>
     <h1>Lista de locações</h1>
     <ul>
-      <li v-for="cliente in clientes" :key="cliente.id">
-        <span>{{ cliente.nome }}</span> - <span>{{ cliente.email }}</span>
+      <li v-for="locacoes in locacoes" :key="locacoes.id">
+        <span>{{ locacoes.carro.nome }}</span> - <span>{{ locacoes.cliente.nome }}</span>
+        - <span>{{ locacoes.valorTotal }}</span>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-  name: 'listaCliente',
+  name: 'listaLocacoes',
   data() {
     return {
-      clientes: [
-        { id: 1, nome: 'Cliente 1', email: 'cliente1@example.com' },
-        { id: 2, nome: 'Cliente 2', email: 'cliente2@example.com' },
-        { id: 3, nome: 'Cliente 3', email: 'cliente3@example.com' },
-      ]
+      locacoes: []
     };
   },
+  created() {
+    axios.get('http://localhost:8080/api/locacao/get-all')
+      .then(response => {
+        console.log(response.data)
+        this.locacoes = response.data;
+      })
+      .catch(error => {
+        console.error('Erro ao obter os dados:', error);
+      });
+  },
+
+  
   props: {
     msg: String
   }
