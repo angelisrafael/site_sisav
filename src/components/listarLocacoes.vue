@@ -3,8 +3,8 @@
     <h1>Lista de locações</h1>
     <ul>
       <li v-for="locacoes in locacoes" :key="locacoes.id">
-        <span>{{ locacoes.carro.nome }}</span> - <span>{{ locacoes.cliente.nome }}</span>
-        - <span>{{ locacoes.valorTotal }}</span>
+        <span>Nome do carro: {{ locacoes.carro.nome }}</span> <br> <span>Nome do cliente{{ locacoes.cliente.nome }}</span>
+        <br> <span>valor total: {{ locacoes.valorTotal }}</span> <br><br>
       </li>
     </ul>
   </div>
@@ -16,7 +16,8 @@ export default {
   name: 'listaLocacoes',
   data() {
     return {
-      locacoes: []
+      locacoes: [
+      ]
     };
   },
   created() {
@@ -39,4 +40,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+span {
+  color: rgb(10, 10, 11);
+  font-size: 30px;
+  
+}
 </style>
