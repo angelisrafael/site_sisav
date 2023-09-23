@@ -16,9 +16,6 @@
              </div>
         </div>
     </div>
-    <footer>
-        <p>&copy; 2023 Locadora de carros VA locs</p>
-    </footer>
 </template>
  
 <script>
@@ -31,6 +28,9 @@ export default {
     data() {
         return {
             carros: [
+            // { id: 1, nome: 'Cliente 1', especificacoes: 'cliente1@example.com', ano:2023 },
+            // { id: 2, nome: 'Cliente 2', especificacoes: 'cliente2@example.com', ano:2023  },
+            // { id: 3, nome: 'Cliente 3', especificacoes: 'cliente3@example.com', ano:2023  },
             ]
         };
     },
@@ -100,11 +100,5 @@ h1 {
     height: auto;
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-}
 </style>
  
