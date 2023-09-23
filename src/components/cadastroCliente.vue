@@ -1,27 +1,56 @@
 <template>
    <div class="container">
         <h2>Cadastro de Cliente</h2>
-        <form action="#" method="post">
+        <form>
             <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
+            <input  v-model="cliente.nome" type="text" id="nome"  required>
             
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input v-model="cliente.email" type="email" id="email"  required>
+
+            <label for="cpf">CPF:</label>
+            <input v-model="cliente.cpf" type="text" id="cpf">
+
+            <label for="telefone">Telefone:</label>
+            <input v-model="cliente.telefone" type="text" id="telefone">
             
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
-            
-            <button type="submit">Cadastrar</button>
+            <button v-on:click="salvar" type="submit">Cadastrar</button>
         </form>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'cadastroCliente',
   props: {
     msg: String
-  }
+  },
+  data() {
+    return {
+      cliente: {}
+    };
+  },
+  created() {
+   if (this.$route.params.id) {
+    this.buscarCliente(this.$route.params.id)
+   }
+  },
+  methods:{
+    buscarCliente(id){
+      axios.get(`http://localhost:8080/api/cliente/get-by-id?id=${id}`)
+      .then(response => this.cliente = response.data)
+    },
+
+    async salvar(){
+        if(this.cliente.id){
+            await axios.post(`http://localhost:8080/api/cliente/save`,this.cliente)
+        }else{
+            await axios.put(`http://localhost:8080/api/cliente/update`,this.cliente)
+        }
+        this.$router.push({ name: 'listaCliente'});
+    }
+  },
 }
 </script>
 
