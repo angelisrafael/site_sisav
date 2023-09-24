@@ -1,19 +1,29 @@
 <template>
     <div class="container">
-        <header>
-            <h1>VA locs</h1>
-        </header>
         <div class="container">
-            <h1>Carros em Destaque</h1>
-            <div class="movie-list" v-for="carros in carros" :key="carros.id">
-                <div class="movie">
-                    <img src="../assets/carro3.jpeg" alt="carro 3">
-                    <h3>{{ carros.nome }}</h3>
-                    <p>Ano:{{ carros.ano }}<br>
-                        Especificações: {{ carros.especificacoes }}
-                    </p>
+            <h1>Lista de Carros</h1>
+            <div class="icone-container">
+                <button class="novo icone" v-on:click="novo()"><font-awesome-icon :icon="['fas', 'circle-plus']"
+                        size="lg" /></button>
+            </div>
+            <div class="movie-list">
+                <div class="movie" v-for="carro in carros" :key="carro.id">
+                    <div class="content">
+                        <div class="acoes">
+                            <button class="icone" v-on:click="editar(carro.id)"><font-awesome-icon icon="fa-solid fa-pen-to-square" size="xl"/></button> 
+                            <button class="icone" v-on:click="deletar(carro.id)"><font-awesome-icon icon="fa-solid fa-trash" size="xl"/></button>
+                        </div>
+                        <img src="../assets/carro3.jpeg" alt="carro 3">
+                        <h3>{{ carro.nome }}</h3>
+                        <span><b>Id:</b> {{ carro.id }}</span><br>
+                        <span><b>Nome:</b> {{ carro.nome }}</span><br>
+                        <span><b>Marca:</b> {{ carro.marca }}</span><br>
+                        <span><b>Modelo:</b> {{ carro.modelo }}</span><br>
+                        <span><b>Placa:</b> {{ carro.placa }}</span><br>
+                        <span><b>Especificações:</b> {{ carro.especificacoes }}</span><br>
+                    </div>
                 </div>
-             </div>
+            </div>
         </div>
     </div>
 </template>
@@ -27,22 +37,36 @@ export default {
     },
     data() {
         return {
-            carros: [
-            // { id: 1, nome: 'Cliente 1', especificacoes: 'cliente1@example.com', ano:2023 },
-            // { id: 2, nome: 'Cliente 2', especificacoes: 'cliente2@example.com', ano:2023  },
-            // { id: 3, nome: 'Cliente 3', especificacoes: 'cliente3@example.com', ano:2023  },
-            ]
+            carros: []
         };
     },
     created() {
         axios.get('http://localhost:8080/api/carro/get-all')
             .then(response => {
-                console.log(response.data)
                 this.carros = response.data;
             })
             .catch(error => {
                 console.error('Erro ao obter os dados:', error);
             });
+    },
+    methods: {
+        buscarTodos() {
+            axios.get('http://localhost:8080/api/carro/get-all')
+                .then(response => this.carros = response.data)
+        },
+        editar(id) {
+            this.$router.push({ name: 'atualizarCarro', params:{id: id} });
+        },
+        deletar(id) {
+            axios.delete(`http://localhost:8080/api/carro/delete-by-id?id=${id}`)
+                .then(() => {
+                    alert('Carro excluido com sucesso')
+                    this.buscarTodos()
+                }).catch(() => alert('Não é possivel excluir o carro pois o mesmo está vinculado com uma locação'))
+        },
+        novo() {
+            this.$router.push({ name: 'cadastroCarro' });
+        }
     },
 }
 </script>
@@ -65,7 +89,7 @@ header {
 
 h1 {
     margin: 0;
-    font-size: 36px;
+    font-size: 60px;
 }
 
 .container {
@@ -79,6 +103,7 @@ h1 {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-between;
+    margin-top: 15px;
 }
 
 .movie {
@@ -89,6 +114,12 @@ h1 {
     width: calc(33.33% - 20px);
     padding: 20px;
     transition: transform 0.2s;
+
+}
+
+.content {
+    text-align: left;
+    font-weight: 300;
 }
 
 .movie:hover {
@@ -100,5 +131,10 @@ h1 {
     height: auto;
 }
 
+.acoes{
+    display: flex;
+    padding-bottom: 15px;
+    justify-content: right;
+}
 </style>
  

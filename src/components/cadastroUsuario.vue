@@ -1,26 +1,69 @@
 <template>
     <div class="container">
          <h2>Cadastro de Usuário</h2>
-         <form action="#" method="post">
+         <form>
              <label for="nome">Nome:</label>
-             <input type="text" id="nome" name="nome" required>
+             <input  v-model="usuario.nome" type="text" id="nome" required>
              
              <label for="email">Email:</label>
-             <input type="email" id="email" name="email" required>
+             <input  v-model="usuario.email" type="email" id="email" required>
              
              <label for="senha">Senha:</label>
-             <input type="password" id="senha" name="senha" required>
+             <input v-model="usuario.senha" type="password" id="senha" required>
+
+             <label for="senha">Confirme a senha:</label>
+             <input v-model="senha" type="password" id="senha" required>
              
-             <button type="submit">Cadastrar</button>
+             <button v-on:click="cadastrar" type="submit">Cadastrar</button>
          </form>
      </div>
  </template>
  
  <script>
+ import axios from 'axios';
  export default {
    name: 'cadastroUsuario',
    props: {
-     msg: String
+     msg: String,
+   },
+   data(){
+    return {
+        usuario: {},
+        senha: String
+    }
+   },
+   created() {
+    this.senha = ''
+  },
+   methods: {
+        async cadastrar(){
+            if(await this.validarSenha())return
+            if(await this.validarEmail())return
+            await axios.post('http://localhost:8080/api/usuario/save', this.usuario)
+                .then(() => {
+                    this.$router.push({ name: 'loginForm'});
+                    alert('Usuário cadastrado com sucesso')
+                })
+        },
+        async validarSenha(){
+            if(this.senha !== this.usuario.senha){
+                alert('As senhas precisam ser iguais!')
+                return true
+            }
+            if(this.usuario.senha.length < 8 ){
+                alert('A senha precisa conter no mínimo 8 caracteres!')
+                return true
+            }
+        },
+        async validarEmail(){
+           return axios.get(`http://localhost:8080/api/usuario/email-already-exists?email=${this.usuario.email}`)
+                .then((response) => {
+                    if(response.data){
+                        alert('Email já cadastrado')  
+                        return true 
+                    }
+                })
+        }
    }
  }
  </script>

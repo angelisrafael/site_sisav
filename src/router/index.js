@@ -8,14 +8,14 @@ const routes = [
     component: () => import('../components/cadastroCliente.vue')
   },
   {
+    path: '/atualizarCliente/:id',
+    name: 'atualizarCliente',
+    component: () => import('../components/cadastroCliente.vue')
+  },
+  {
     path: '/login',
     name: 'loginForm',
     component: () => import('../components/login.vue')
-  },
-  {
-    path: '/atualizarCliente',
-    name: 'atualizarCliente',
-    component: () => import('../components/atualizarCliente.vue')
   },
   {
     path: '/listaCliente',
@@ -28,16 +28,20 @@ const routes = [
     component: () => import('../components/mostrarVeiculos.vue')
   },
   {
-    path: '/telaPrincipal',
-    name: 'telaPrincipal',
-    component: () => import('../components/telaPrincipal.vue')
-  },
-  {
     path: '/cadastroCarro',
     name: 'cadastroCarro',
     component: () => import('../components/cadastroCarro.vue')
   },
-
+  {
+    path: '/atualizarCarro/:id',
+    name: 'atualizarCarro',
+    component: () => import('../components/cadastroCarro.vue')
+  },
+  {
+    path: '/telaPrincipal',
+    name: 'telaPrincipal',
+    component: () => import('../components/telaPrincipal.vue')
+  },
   {
     path: '/cadastroUsuario',
     name: 'cadastroUsuario',
@@ -46,6 +50,11 @@ const routes = [
   {
     path: '/cadastroLocacao',
     name: 'cadastroLocacao',
+    component: () => import('../components/cadastroLocacao.vue')
+  },
+  {
+    path: '/atualizarLocacao/:id',
+    name: 'atualizarLocacao',
     component: () => import('../components/cadastroLocacao.vue')
   },
   {
