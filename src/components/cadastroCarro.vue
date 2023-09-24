@@ -22,7 +22,7 @@
             <textarea style="min-width: 415px; max-width: 415px;" v-model="carro.especificacoes" id="especificacoes"
                 rows="4" cols="50"> </textarea>
 
-            <button type="submit" v-on:click="save">Cadastrar</button>
+            <button type="submit" v-on:click="save">{{ this.$route.params.id ? 'Atualizar' : 'Cadastrar' }}</button>
         </form>
     </div>
 </template>

@@ -53,6 +53,11 @@ const routes = [
     component: () => import('../components/cadastroLocacao.vue')
   },
   {
+    path: '/atualizarLocacao/:id',
+    name: 'atualizarLocacao',
+    component: () => import('../components/cadastroLocacao.vue')
+  },
+  {
     path: '/listarLocacoes',
     name: 'listarLocacoes',
     component: () => import('../components/listarLocacoes.vue')

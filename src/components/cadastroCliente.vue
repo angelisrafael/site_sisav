@@ -14,7 +14,7 @@
             <label for="telefone">Telefone:</label>
             <input v-model="cliente.telefone" type="text" id="telefone">
             
-            <button v-on:click="salvar" type="submit">Cadastrar</button>
+            <button v-on:click="salvar" type="submit">{{ this.$route.params.id ? 'Atualizar' : 'Cadastrar' }}</button>
         </form>
     </div>
 </template>

@@ -36,7 +36,6 @@ export default {
     },
     logoff(){
       this.$router.push({ name: 'loginForm'}); 
-      console.log(this.$route)
     },
     checkRoute(){
       return this.$route.name != 'loginForm' && this.$route.name != 'cadastroUsuario'     

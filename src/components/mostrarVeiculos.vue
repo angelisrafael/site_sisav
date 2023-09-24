@@ -43,7 +43,6 @@ export default {
     created() {
         axios.get('http://localhost:8080/api/carro/get-all')
             .then(response => {
-                console.log(response.data)
                 this.carros = response.data;
             })
             .catch(error => {
@@ -59,12 +58,11 @@ export default {
             this.$router.push({ name: 'atualizarCarro', params:{id: id} });
         },
         deletar(id) {
-            console.log(id)
             axios.delete(`http://localhost:8080/api/carro/delete-by-id?id=${id}`)
                 .then(() => {
                     alert('Carro excluido com sucesso')
                     this.buscarTodos()
-                })
+                }).catch(() => alert('Não é possivel excluir o carro pois o mesmo está vinculado com uma locação'))
         },
         novo() {
             this.$router.push({ name: 'cadastroCarro' });

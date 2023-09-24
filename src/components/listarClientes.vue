@@ -53,12 +53,12 @@ export default {
     },
 
     deletar(id){
-      console.log(id)
       axios.delete(`http://localhost:8080/api/cliente/delete-by-id?id=${id}`)
       .then( () => {
         alert('Cliente excluido com sucesso')
         this.buscarTodos()
       })
+      .catch(() => alert('Não é possivel excluir o cliente pois o mesmo tem uma locação em seu nome'))
     },
     
     novo(){

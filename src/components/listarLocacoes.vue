@@ -11,6 +11,8 @@
           <th>Id</th>
           <th>Carro</th>
           <th>Cliente</th>
+          <th>Data de Retirada</th>
+          <th>Data de Retorno</th>
           <th>Total</th>
           <th>Ações</th>
         </tr>
@@ -18,6 +20,8 @@
           <td>{{ locacao.id }}</td>
           <td>{{ locacao.carro.nome }}</td>
           <td>{{ locacao.cliente.nome }}</td>
+          <td>{{ locacao.dataInicio.toLocaleString() }} </td>
+          <td>{{ locacao.dataRetorno.toLocaleString() }}</td>
           <td>{{ locacao.valorTotal }}</td>
           <td>
             <button class="icone" v-on:click="editar(locacao.id)"><font-awesome-icon icon="fa-solid fa-pen-to-square" size="xl" /></button>
@@ -32,7 +36,7 @@
 <script>
 import axios from 'axios';
 export default {
-  name: 'listaLocacoes',
+  name: 'listarLocacoes',
   data() {
     return {
       locacoes: [
@@ -42,7 +46,6 @@ export default {
   created() {
     axios.get('http://localhost:8080/api/locacao/get-all')
       .then(response => {
-        console.log(response.data)
         this.locacoes = response.data;
       })
       .catch(error => {
@@ -55,14 +58,9 @@ export default {
         .then(response => this.locacoes = response.data)
     },
     editar(id) {
-      console.log(id)
-      axios.get(`http://localhost:8080/api/locacao/get-by-id?id=${id}`)
-        .then(response => {
-          console.log(response)
-        })
+      this.$router.push({ name: 'atualizarLocacao', params:{id: id} });
     },
     deletar(id) {
-      console.log(id)
       axios.delete(`http://localhost:8080/api/locacao/delete-by-id?id=${id}`)
         .then(() => {
           alert('Locação excluida com sucesso')

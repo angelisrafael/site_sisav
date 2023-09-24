@@ -32,13 +32,17 @@
         senha: String
     }
    },
+   created() {
+    this.senha = ''
+  },
    methods: {
         async cadastrar(){
             if(await this.validarSenha())return
-            axios.post('http://localhost:8080/api/usuario/save', this.usuario)
+            if(await this.validarEmail())return
+            await axios.post('http://localhost:8080/api/usuario/save', this.usuario)
                 .then(() => {
-                        this.$router.push({ name: 'loginForm'});
-                        alert('Usuário cadastrado com sucesso')
+                    this.$router.push({ name: 'loginForm'});
+                    alert('Usuário cadastrado com sucesso')
                 })
         },
         async validarSenha(){
@@ -47,9 +51,18 @@
                 return true
             }
             if(this.usuario.senha.length < 8 ){
-                alert('A precisa conter no mínimo 8 caracteres!')
+                alert('A senha precisa conter no mínimo 8 caracteres!')
                 return true
             }
+        },
+        async validarEmail(){
+           return axios.get(`http://localhost:8080/api/usuario/email-already-exists?email=${this.usuario.email}`)
+                .then((response) => {
+                    if(response.data){
+                        alert('Email já cadastrado')  
+                        return true 
+                    }
+                })
         }
    }
  }
