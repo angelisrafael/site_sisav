@@ -2,6 +2,7 @@
     <div class="container">
         <h2>Cadastro de carro</h2>
         <form>
+        
             <label style="justify-content: left;" for="nome">Nome:</label>
             <input type="text" v-model="carro.nome" id="nome" required>
 
