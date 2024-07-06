@@ -13,7 +13,7 @@
                             <button class="icone" v-on:click="editar(carro.id)"><font-awesome-icon icon="fa-solid fa-pen-to-square" size="xl"/></button> 
                             <button class="icone" v-on:click="deletar(carro.id)"><font-awesome-icon icon="fa-solid fa-trash" size="xl"/></button>
                         </div>
-                        <img src="../assets/carro3.jpeg" alt="carro 3">
+                        <!-- <img src="../assets/carro3.jpeg" alt="carro 3"> -->
                         <h3>{{ carro.nome }}</h3>
                         <span><b>Id:</b> {{ carro.id }}</span><br>
                         <span><b>Nome:</b> {{ carro.nome }}</span><br>
