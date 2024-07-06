@@ -4,7 +4,7 @@
     <button @click="telaPrincipal" class="button">Consultas</button>
     <button @click="listarCliente" class="button">Solicitações</button>
     <button @click="listarVeiculo" class="button">Ajuda</button>
-    <button @click="listarLocacao" class="button">Sobre</button>
+    <button @click="pageSobre" class="button">Sobre</button>
     <img alt="Vue logo" class="image" src="./assets/iconMan.png">
   </header>
 
@@ -20,8 +20,8 @@ export default {
     listarCliente() {
         this.$router.push({ name: 'listaCliente'});
     },
-    listarLocacao() {
-        this.$router.push({ name: 'listarLocacoes'});
+    pageSobre() {
+        this.$router.push({ name: 'pageSobre'});
     },
     listarVeiculo() {
         this.$router.push({ name: 'MostrarVeiculo'});

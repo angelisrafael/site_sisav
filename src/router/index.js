@@ -63,9 +63,9 @@ const routes = [
     component: () => import('../components/cadastroLocacao.vue')
   },
   {
-    path: '/listarLocacoes',
-    name: 'listarLocacoes',
-    component: () => import('../components/listarLocacoes.vue')
+    path: '/pageSobre',
+    name: 'pageSobre',
+    component: () => import('../components/pageSobre.vue')
   },
 ] 
 
