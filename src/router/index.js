@@ -23,6 +23,11 @@ const routes = [
     component: () => import('../views/loginAvap.vue')
   },
   {
+    path: '/ajudaPage',
+    name: 'ajudaPage',
+    component: () => import('../views/ajudaPage.vue')
+  },
+  {
     path: '/listaCliente',
     name: 'listaCliente',
     component: () => import('../components/listarClientes.vue')

@@ -4,16 +4,16 @@
       <img class="logoBranca" src="@/assets/logoAvapWhite.png" alt="Login Image">
       <form @submit.prevent="login">
         <div class="form-group">
-          <label for="username"><strong>Usuário</strong></label>
+          <label style="text-align:left" for="username"><strong>Usuário</strong></label>
           <input style="width: 350px; height: 40px; border-radius: 10px" type="text" id="username" v-model="username" required>
         </div>
         <div class="form-group">
-          <label for="password"><strong>Senha</strong></label>
+          <label style="text-align:left" for="password"><strong>Senha</strong></label>
           <input style="width: 350px; height: 40px; border-radius: 10px" type="password" id="password" v-model="password" required>
         </div>
-        <button style="width: 150px; height: 40px; border-radius: 10px" type="submit"><strong>Entrar</strong></button>
+        <button style="width: 185px; height: 40px; border-radius: 10px; margin-top: 25px" type="submit"><strong>Entrar</strong></button>
       </form>
-      <!--<a href="#" @click="forgotPassword">Esqueceu sua senha? Clique aqui</a>-->
+      <a style="color:gray" href="#" @click="forgotPassword">Esqueceu sua senha? Clique aqui</a>
     </div>
     <div class="login-image">
       <img src="@/assets/loginImage.png" alt="Login Image">
@@ -111,7 +111,7 @@ a {
 .logoBranca {
   width: 22%;
   height: 12%;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 
 .login-image img {

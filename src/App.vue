@@ -3,7 +3,7 @@
     <img alt="Vue logo" class="imageLogo" src="./assets/logoAvap.png">
     <button @click="telaPrincipal" class="button">Consultas</button>
     <button @click="listarCliente" class="button">Solicitações</button>
-    <button @click="listarVeiculo" class="button">Ajuda</button>
+    <button @click="pageAjuda" class="button">Ajuda</button>
     <button @click="pageSobre" class="button">Sobre</button>
     <img alt="Vue logo" class="image" src="./assets/iconMan.png">
   </header>
@@ -26,6 +26,9 @@ export default {
     listarVeiculo() {
         this.$router.push({ name: 'MostrarVeiculo'});
     },
+    pageAjuda() {
+        this.$router.push({ name: 'ajudaPage'});
+    },
     telaPrincipal() {
         this.$router.push({ name: 'telaPrincipal'});
     },
@@ -33,7 +36,7 @@ export default {
       this.$router.push({ name: 'loginForm'}); 
     },
     checkRoute(){
-      return this.$route.name != 'loginForm' && this.$route.name != 'cadastroUsuario' && this.$route.name != 'loginAvap'; 
+      return this.$route.name != 'loginForm' && this.$route.name != 'cadastroUsuario' && this.$route.name != 'loginAvap' ; 
     }
   }
 }
