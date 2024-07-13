@@ -1,6 +1,6 @@
 <template>
   <header v-if="checkRoute()" class="header">
-    <img alt="Vue logo" class="imageLogo" src="./assets/logoAvap.png">
+    <img @click="telaPrincipal" alt="Vue logo" class="imageLogo" src="./assets/logoAvap.png">
     <button @click="telaPrincipal" class="button">Consultas</button>
     <button @click="listarCliente" class="button">Solicitações</button>
     <button @click="pageAjuda" class="button">Ajuda</button>
