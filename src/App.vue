@@ -1,8 +1,8 @@
 <template>
   <header v-if="checkRoute()" class="header">
     <img @click="telaPrincipal" alt="Vue logo" class="imageLogo" src="./assets/logoAvap.png">
-    <button @click="telaPrincipal" class="button">Consultas</button>
-    <button @click="listarCliente" class="button">Solicitações</button>
+    <button @click="telaConsulta" class="button">Consultas</button>
+    <button @click="telaConsulta" class="button">Solicitações</button>
     <button @click="pageAjuda" class="button">Ajuda</button>
     <button @click="pageSobre" class="button">Sobre</button>
     <img alt="Vue logo" class="image" src="./assets/iconMan.png">
@@ -17,8 +17,8 @@ export default {
   name: 'App',
   components: {},
   methods: {
-    listarCliente() {
-        this.$router.push({ name: 'listaCliente'});
+    telaConsulta() {
+        this.$router.push({ name: 'telaConsulta'});
     },
     pageSobre() {
         this.$router.push({ name: 'pageSobre'});

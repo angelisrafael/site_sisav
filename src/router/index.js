@@ -28,9 +28,9 @@ const routes = [
     component: () => import('../views/ajudaPage.vue')
   },
   {
-    path: '/listaCliente',
-    name: 'listaCliente',
-    component: () => import('../components/listarClientes.vue')
+    path: '/telaConsulta',
+    name: 'telaConsulta',
+    component: () => import('../components/telaConsulta.vue')
   },
   {
     path: '/mostrarVeiculos',
