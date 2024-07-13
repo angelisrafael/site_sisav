@@ -29,7 +29,22 @@
         <button @click="enviarMensagem">Enviar</button>
       </div>
     </div>
+    <h2 class="label-ajuda-online">Ajuda Online</h2>
+    <div class="ajuda-online">
+      <div class="card">
+        <h3>Chat Online</h3>
+        <p>Aqui você pode conversar ao vivo com um de nossos atendentes.</p>
+        <button class="card-button">Iniciar Chat</button>
+      </div>
+      <div class="card">
+        <h3>Ligação</h3>
+        <p>Se preferir, você pode nos ligar para obter suporte.</p>
+        <button class="card-button">Ligar Agora</button>
+      </div>
+    </div>
+    <div style="height: 80px"></div>
   </div>
+  
 </template>
 
 <script>
@@ -220,4 +235,55 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.label-ajuda-online {
+  padding-top: 20px;
+  width: 85%;
+  display: flex;
+  justify-content: left;
+  font-size: 25px;
+}
+
+.ajuda-online {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.card {
+  width: 45%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.card p {
+  margin-bottom: 15px;
+}
+
+.card-button {
+  font-weight: bold;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card-button:hover {
+  background-color: #353535;
+}
+
 </style>
