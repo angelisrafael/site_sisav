@@ -5,7 +5,7 @@
     <button @click="solicitacoes" class="button">Solicitações</button>
     <button @click="pageAjuda" class="button">Ajuda</button>
     <button @click="pageSobre" class="button">Sobre</button>
-    <img alt="Vue logo" class="image" src="./assets/iconMan.png">
+    <img @click="telaPerfil" alt="Vue logo" class="image" src="./assets/iconMan.png">
   </header>
 
   <router-view></router-view>
@@ -34,6 +34,9 @@ export default {
     },
     telaPrincipal() {
         this.$router.push({ name: 'telaPrincipal'});
+    },
+    telaPerfil() {
+        this.$router.push({ name: 'perfilForm'});
     },
     logoff(){
       this.$router.push({ name: 'loginForm'}); 

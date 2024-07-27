@@ -18,6 +18,11 @@ const routes = [
     component: () => import('../components/login.vue')
   },
   {
+    path: '/perfil',
+    name: 'perfilForm',
+    component: () => import('../views/perfilPage.vue')
+  },
+  {
     path: '/loginAvap',
     name: 'loginAvap',
     component: () => import('../views/loginAvap.vue')
