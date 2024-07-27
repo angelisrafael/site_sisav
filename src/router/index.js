@@ -72,6 +72,11 @@ const routes = [
     name: 'pageSobre',
     component: () => import('../components/pageSobre.vue')
   },
+  {
+    path: '/minhasSolicitacoes',
+    name: 'minhasSolicitacoes',
+    component: () => import('../components/minhasSolicitacoes.vue')
+  },
 ] 
 
 const router = createRouter({
