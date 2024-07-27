@@ -20,7 +20,7 @@ const routes = [
   {
     path: '/perfil',
     name: 'perfilForm',
-    component: () => import('../views/perfil.vue')
+    component: () => import('../views/perfilPage.vue')
   },
   {
     path: '/loginAvap',
