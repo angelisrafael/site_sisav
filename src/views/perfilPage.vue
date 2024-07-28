@@ -94,8 +94,7 @@ export default {
       console.log(this.dadosPessoais);
     },
     sair() {
-      // Lógica para sair
-      console.log('Saindo...');
+      this.$router.push({ name: 'loginAvap'});
     }
   }
 }

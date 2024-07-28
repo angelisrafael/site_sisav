@@ -4,8 +4,8 @@ import {createRouter, createWebHashHistory} from 'vue-router'
 const routes = [
   {
     path: '/',
-    redirect: 'telaPrincipal',
-    component: () => import('../components/telaPrincipal.vue')
+    redirect: 'loginForm',
+    component: () => import('../components/login.vue')
   },
   {
     path: '/cadastroCliente',
