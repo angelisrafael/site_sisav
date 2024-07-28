@@ -3,6 +3,11 @@ import {createRouter, createWebHashHistory} from 'vue-router'
 
 const routes = [
   {
+    path: '/',
+    redirect: 'telaPrincipal',
+    component: () => import('../components/telaPrincipal.vue')
+  },
+  {
     path: '/cadastroCliente',
     name: 'cadastroCliente',
     component: () => import('../components/cadastroCliente.vue')
@@ -36,21 +41,6 @@ const routes = [
     path: '/telaConsulta',
     name: 'telaConsulta',
     component: () => import('../components/telaConsulta.vue')
-  },
-  {
-    path: '/mostrarVeiculos',
-    name: 'MostrarVeiculo',
-    component: () => import('../components/mostrarVeiculos.vue')
-  },
-  {
-    path: '/cadastroCarro',
-    name: 'cadastroCarro',
-    component: () => import('../components/cadastroCarro.vue')
-  },
-  {
-    path: '/atualizarCarro/:id',
-    name: 'atualizarCarro',
-    component: () => import('../components/cadastroCarro.vue')
   },
   {
     path: '/telaPrincipal',

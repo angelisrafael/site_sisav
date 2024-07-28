@@ -13,6 +13,7 @@
         <span>Mapa UEM</span>
       </button>
     </div>
+    <h1 class="label-perfil">Horários de aulas</h1>
 
     <div class="horario_aula">
       <table>
@@ -53,7 +54,7 @@
     </div>
 
 
-    <h2>Mapa UEM</h2>
+    <h1 class="label-perfil">Mapa UEM</h1>
     <img alt="Vue logo" class="imageUem" src="../assets/mapaUem.jpg">
   </div>
 </template>
@@ -74,6 +75,16 @@ export default {
  
  <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.label-perfil {
+  font-size: 25px;
+  display: flex;
+  align-items: left;
+  padding-left: 10%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
 .imageUem {
   width: 70%;
 }

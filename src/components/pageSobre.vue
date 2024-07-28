@@ -1,7 +1,7 @@
 <template>
   <div class="body2">
     <h1>UEM</h1>
-    <h1>Sobre a UEM</h1>
+    <h2>Sobre a UEM</h2>
     <p>A Universidade Estadual de Maringá (UEM) é uma instituição pública de ensino superior localizada em Maringá,
       Paraná. Fundada em 1969, a UEM é reconhecida por sua excelência acadêmica e pela qualidade de seus cursos de
       graduação e pós-graduação. Com um corpo docente altamente qualificado e infraestrutura moderna, a universidade
@@ -58,25 +58,23 @@ export default {
 .body2 {
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  margin: 50;
   padding: 20px;
-  align-items: end;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 10%;
+  padding-right: 10%;
+}
 
+p, ul {
+  text-align: left;
 }
 
 h1,
 h2,
 h3 {
   color: #333;
-}
-
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 ul {

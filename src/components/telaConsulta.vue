@@ -114,6 +114,7 @@ export default {
   align-items: center;
   height: 10vh;
   background-color: #ffffff;
+  padding: 30px;
 }
 
 button {
@@ -137,7 +138,10 @@ button:hover {
   justify-content: center;
   align-items: center;
   height: 20vh;
-  background-color: #f4f4f4;
+
+}
+.botoes-perfil button.active:hover {
+  background-color: rgb(170, 0, 0);
 }
 
 .grade-table {
