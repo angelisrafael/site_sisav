@@ -1,12 +1,11 @@
 <template>
   <div>
     <div class="buttons">
-        <button @click="currentView = 'notasEFaltas'">Notas e Faltas</button>
-        <button @click="currentView = 'AAC'">AAC</button>
-        <button @click="currentView = 'historico'">Histórico Escolar</button>
-        <button @click="currentView = 'comprovante'">Comprov. de Matrícula</button>
+        <button :class="{ active: currentView === 'notasEFaltas' }" @click="currentView = 'notasEFaltas'">Notas e Faltas</button>
+        <button :class="{ active: currentView === 'AAC' }" @click="currentView = 'AAC'">AAC</button>
+        <button :class="{ active: currentView === 'historico' }" @click="currentView = 'historico'">Histórico Escolar</button>
+        <button :class="{ active: currentView === 'comprovante' }" @click="currentView = 'comprovante'">Comprov. de Matrícula</button>
     </div>
-
     <div v-if="currentView === 'notasEFaltas'" class="table-container"  id="notasEFaltas">
       <table class="grade-table">
         <thead>
@@ -177,5 +176,9 @@ button:hover {
 
 .grade-table tbody td div {
   margin-bottom: 5px;
+}
+
+button.active {
+  background-color: #e62c2c;
 }
 </style>
