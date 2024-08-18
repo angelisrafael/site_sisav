@@ -25,17 +25,16 @@
         <form @submit.prevent="salvarDadosPessoais">
           <div class="form-group">
             <label for="nome">Dados Acadêmicos</label>
-            <input type="text" id="nome" v-model="dadosPessoais.nome" required>
+            <input type="text" id="nome" v-model="dadosPessoais.nome" readonly>
           </div>
           <div class="form-group">
             <label for="email">Dados do Aluno</label>
-            <input type="email" id="email" v-model="dadosPessoais.email" required>
+            <input type="email" id="email" v-model="dadosPessoais.email" readonly>
           </div>
           <div class="form-group">
             <label for="telefone">Endereço do Aluno</label>
-            <input type="tel" id="telefone" v-model="dadosPessoais.telefone" required>
+            <input type="tel" id="telefone" v-model="dadosPessoais.telefone" readonly>
           </div>
-          <button type="submit">Salvar</button>
         </form>
         <div style="height: 50px"></div>
       </div>

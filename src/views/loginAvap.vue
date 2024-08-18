@@ -13,7 +13,6 @@
         </div>
         <button style="width: 185px; height: 40px; border-radius: 10px; margin-top: 25px" type="submit"><strong>Entrar</strong></button>
       </form>
-      <a style="color:gray" href="#" @click="forgotPassword">Esqueceu sua senha? Clique aqui</a>
     </div>
     <div class="login-image">
       <img src="@/assets/loginImage.png" alt="Login Image">
