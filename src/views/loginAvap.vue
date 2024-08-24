@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -29,16 +31,21 @@ export default {
     }
   },
   methods: {
-    login() {
-      // Implementar lógica de login aqui
-      console.log('Usuário:', this.username);
-      console.log('Senha:', this.password);
-      // Redirecionar após login bem-sucedido
-      this.$router.push({ name: 'telaPrincipal' });
-    },
-    forgotPassword() {
-      // Implementar lógica de recuperação de senha aqui
-      console.log('Recuperação de senha');
+    async login() {
+      try {
+        const response = await axios.get('http://localhost:3000/usuario');
+        const users = response.data.data;
+
+        const user = users.find(user => user.ra === parseInt(this.username) && user.senha === this.password);
+
+        if (user) {
+          this.$router.push({ name: 'telaPrincipal' });
+        } else {
+          alert('Credenciais inválidas');
+        }
+      } catch (error) {
+        console.error('Erro ao tentar fazer login:', error);
+      }
     }
   }
 }
