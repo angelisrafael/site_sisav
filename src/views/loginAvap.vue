@@ -4,7 +4,7 @@
       <img class="logoBranca" src="@/assets/logoAvapWhite.png" alt="Login Image">
       <form @submit.prevent="login">
         <div class="form-group">
-          <label style="text-align:left" for="username"><strong>Usuário</strong></label>
+          <label style="text-align:left" for="username"><strong>RA</strong></label>
           <input style="width: 350px; height: 40px; border-radius: 10px" type="text" id="username" v-model="username" required>
         </div>
         <div class="form-group">
@@ -39,6 +39,7 @@ export default {
         const user = users.find(user => user.ra === parseInt(this.username) && user.senha === this.password);
 
         if (user) {
+          localStorage.setItem('userRA', this.username);
           this.$router.push({ name: 'telaPrincipal' });
         } else {
           alert('Credenciais inválidas');

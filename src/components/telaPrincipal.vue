@@ -1,79 +1,113 @@
 <template>
   <div class="container">
-
     <div class="button-container">
       <button class="square-button">
         <i class="fas fa-clock"></i>
-        <p style="font-size:10px"></p>
         <span>Horário de Aulas</span>
       </button>
       <button class="square-button">
         <i class="fas fa-map-marker-alt"></i>
-        <p style="font-size:10px"></p>
         <span>Mapa UEM</span>
       </button>
     </div>
+
     <h1 class="label-perfil">Horários de aulas</h1>
 
     <div class="horario_aula">
       <table>
         <thead>
-            <tr>
-                <th>Hr./Aula</th>
-                <th>Segunda</th>
-                <th>Terça</th>
-                <th>Quarta</th>
-                <th>Quinta</th>
-                <th>Sexta</th>
-                <th>Sábado</th>
-            </tr>
+          <tr>
+            <th>Hr./Aula</th>
+            <th>Segunda</th>
+            <th>Terça</th>
+            <th>Quarta</th>
+            <th>Quinta</th>
+            <th>Sexta</th>
+            <th>Sábado</th>
+          </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>08:00 - 09:00</td>
-                <td>Matemática</td>
-                <td>Português</td>
-                <td>História</td>
-                <td>Geografia</td>
-                <td>Ciências</td>
-                <td>Educação Física</td>
-            </tr>
-            <tr>
-                <td>09:00 - 10:00</td>
-                <td>Inglês</td>
-                <td>Matemática</td>
-                <td>Português</td>
-                <td>História</td>
-                <td>Geografia</td>
-                <td>Artes</td>
-            </tr>
-            <!-- Adicione mais linhas conforme necessário -->
+          <tr>
+            <td>08:00 - 09:00</td>
+            <td>{{ horarios.segunda[1] }}</td>
+            <td>{{ horarios.terca[1] }}</td>
+            <td>{{ horarios.quarta[1] }}</td>
+            <td>{{ horarios.quinta[1] }}</td>
+            <td>{{ horarios.sexta[1] }}</td>
+            <td>{{ horarios.sabado[1] }}</td>
+          </tr>
+          <tr>
+            <td>09:00 - 10:00</td>
+            <td>{{ horarios.segunda[2] }}</td>
+            <td>{{ horarios.terca[2] }}</td>
+            <td>{{ horarios.quarta[2] }}</td>
+            <td>{{ horarios.quinta[2] }}</td>
+            <td>{{ horarios.sexta[2] }}</td>
+            <td>{{ horarios.sabado[2] }}</td>
+          </tr>
         </tbody>
-    </table>
-
+      </table>
     </div>
-
 
     <h1 class="label-perfil">Mapa UEM</h1>
     <img alt="Vue logo" class="imageUem" src="../assets/mapaUem.jpg">
   </div>
 </template>
- 
+
 <script>
+import axios from 'axios';
+
 export default {
-  name: 'telaPrincipal',
-  props: {
-    msg: String
+  data() {
+    return {
+      userRA: localStorage.getItem('userRA'),
+      horarios: {
+        segunda: { 1: '', 2: '' },
+        terca: { 1: '', 2: '' },
+        quarta: { 1: '', 2: '' },
+        quinta: { 1: '', 2: '' },
+        sexta: { 1: '', 2: '' },
+        sabado: { 1: '', 2: '' },
+      }
+    };
   },
-
+  created() {
+    this.fetchHorarios();
+  },
   methods: {
+    async fetchHorarios() {
+      try {
+        // Supondo que o RA do aluno seja '101', substitua conforme necessário
+        //const raAluno = '101';
 
+        const response = await axios.get('http://localhost:3000/disciplina/horarios/' + this.userRA);
 
+        console.log('Resposta da API:', response.data);
+
+        const disciplinas = response.data.data;
+
+        // Preencher a tabela de horários
+        disciplinas.forEach(disciplina => {
+          const dia = disciplina.dia_semana.toLowerCase().replace('segunda-feira', 'segunda')
+                                                 .replace('terça-feira', 'terca')
+                                                 .replace('quarta-feira', 'quarta')
+                                                 .replace('quinta-feira', 'quinta')
+                                                 .replace('sexta-feira', 'sexta')
+                                                 .replace('sábado', 'sabado');
+          if (this.horarios[dia]) {
+            this.horarios[dia][disciplina.horario] = disciplina.nome_disciplina;
+          }
+        });
+
+        console.log('Horários:', this.horarios);
+      } catch (error) {
+        console.error('Erro ao buscar horários:', error);
+      }
+    }
   }
 }
 </script>
  
- <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 .label-perfil {
