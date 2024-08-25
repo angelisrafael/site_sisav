@@ -18,16 +18,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>9999</td>
-            <td>LABORATÓRIO DE ENGENH. DE SOFTWARE</td>
-            <td>Matriculado</td>
-            <td>4</td>
-            <td>
-              <div>Av. 1 - 9,0</div>
-              <div>Av. 2 - 9,0</div>
-              <div>Média - 9,0</div>
-            </td>
+          <tr v-for="disciplina in notasEFaltasData" :key="disciplina.id_disciplina">
+            <td>{{ disciplina.id_disciplina }}</td>
+            <td>{{ disciplina.nome_disciplina }}</td>
+            <td>{{ disciplina.situacao }}</td>
+            <td>{{ disciplina.faltas }}</td>
+            <td>{{ disciplina.media !== null ? disciplina.media : '---' }}</td>
           </tr>
         </tbody>
       </table>
@@ -38,45 +34,42 @@
         <thead>
           <tr>
             <th>Ano</th>
-            <th>Disciplina</th>
-            <th>Série</th>
-            <th>CH</th>
-            <th>Notas</th>
+            <th>Nome</th>
+            <th>Carga Horária</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>2022</td>
-            <td>Matemática discreta</td>
-            <td>1</td>
-            <td>68,0</td>
-            <td>80,0</td>
-            <td>Aprovado</td>
+          <tr v-for="disciplina in aacData" :key="disciplina.nome">
+            <td>{{ disciplina.ano }}</td>
+            <td>{{ disciplina.nome }}</td>
+            <td>{{ disciplina.horas }}</td>
+            <td>{{ disciplina.status }}</td>
           </tr>
         </tbody>
-      </table>
-
-    
+      </table>    
     </div>
 
     <div v-if="currentView === 'historico'" class="table-container" id="historico">
       <table class="grade-table">
         <thead>
           <tr>
-            <th>Ano</th>
-            <th>Atividade</th>
-            <th>Tipo AAC</th>
+            <th>Cód da Disc.</th>
+            <th>Disciplina</th>
+            <th>Série</th>
             <th>CH</th>
-
+            <th>Média</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>2022</td>
-            <td>Curso de HTML completo</td>
-            <td>Curso</td>
-            <td>20</td>
+          <tr v-for="disciplina in historicoData" :key="disciplina.id_disciplina">
+            <td>{{ disciplina.id_disciplina }}</td>
+            <td>{{ disciplina.nome_disciplina }}</td>
+            <td>{{ disciplina.serie }}</td>
+            <td>{{ disciplina.carga }}</td>
+            <td>{{ disciplina.media !== null ? disciplina.media : 'N/A' }}</td>
+            <td>{{ disciplina.situacao }}</td>
           </tr>
         </tbody>
       </table>
@@ -90,19 +83,57 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'telaConsulta',
   data() {
     return {
-      currentView: 'notasEFaltas' // Default view
+      userRA: localStorage.getItem('userRA'),
+      currentView: '', // Default view
+      notasEFaltasData: [],
+      aacData: [],
+      historicoData: []
     };
   },
-  created() {},
-  methods: {},
-  props: {
-    msg: String
+  watch: {
+    currentView(newValue) {
+      if (newValue === 'notasEFaltas') {
+        this.fetchNotasEFaltasData();
+      } else if (newValue === 'AAC') {
+        this.fetchAACData();
+      } else if (newValue === 'historico') {
+        this.fetchHistoricoData();
+      }
+    }
+  },
+  methods: {
+    async fetchNotasEFaltasData() {
+      try {
+        const response = await axios.get('http://localhost:3000/disciplina/media/' + this.userRA);
+        this.notasEFaltasData = response.data.data;
+      } catch (error) {
+        console.error('Erro ao buscar dados de Notas e Faltas:', error);
+      }
+    },
+    async fetchAACData() {
+      try {
+        const response = await axios.get('http://localhost:3000/aac/' + this.userRA);
+        this.aacData = response.data.data;
+      } catch (error) {
+        console.error('Erro ao buscar dados de AAC:', error);
+      }
+    },
+    async fetchHistoricoData() {
+      try {
+        const response = await axios.get('http://localhost:3000/disciplina/historico/' + this.userRA);
+        this.historicoData = response.data.data;
+      } catch (error) {
+        console.error('Erro ao buscar dados de Histórico Escolar:', error);
+      }
+    }
   }
-}
+};
 </script>
 
 <style>
@@ -136,7 +167,6 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20vh;
 
 }
 .botoes-perfil button.active:hover {
@@ -147,6 +177,7 @@ button:hover {
   width: 80%;
   border-collapse: collapse;
   margin: 20px 0;
+  margin-top: 40px;
   font-size: 16px;
   text-align: left;
 }

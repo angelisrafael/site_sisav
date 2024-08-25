@@ -24,43 +24,27 @@
         <div style="height: 50px"></div>
         <form @submit.prevent="salvarDadosPessoais">
           <div class="form-group">
-            <label for="nome">Dados Acadêmicos</label>
+            <label for="ra">RA</label>
+            <input type="text" id="ra" v-model="dadosPessoais.ra" readonly>
+          </div>
+          <div class="form-group">
+            <label for="nome">Nome</label>
             <input type="text" id="nome" v-model="dadosPessoais.nome" readonly>
           </div>
           <div class="form-group">
-            <label for="email">Dados do Aluno</label>
-            <input type="email" id="email" v-model="dadosPessoais.email" readonly>
-          </div>
-          <div class="form-group">
-            <label for="telefone">Endereço do Aluno</label>
-            <input type="tel" id="telefone" v-model="dadosPessoais.telefone" readonly>
+            <label for="serie">Série Atual</label>
+            <input type="text" id="serie" :value="serieFormatada" readonly>
           </div>
         </form>
         <div style="height: 50px"></div>
       </div>
-      <div v-if="activeSection === 'documentosPessoais'" class="dados-pessoais">
+      <div v-if="activeSection === 'documentosPessoais'" class="documentos-pessoais">
         <h2 class="label-perfil" style="padding-bottom: 50px">Documentos Pessoais</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Origem</th>
-              <th>Tipo</th>
-              <th>Nome</th>
-              <th>Data</th>
-            </tr>
-          </thead>
+        <table style="margin-bottom:100px">
           <tbody>
-            <tr>
-              <td>RG</td>
-              <td>123456789</td>
-              <td>01/01/2020</td>
-              <td>SSP</td>
-            </tr>
-            <tr>
-              <td>CPF</td>
-              <td>987654321</td>
-              <td>01/01/2020</td>
-              <td>Receita Federal</td>
+            <tr v-for="documento in documentos" :key="documento.numero">
+              <td>{{ documento.nome }}</td>
+              <td>{{ documento.numero }}</td>
             </tr>
           </tbody>
         </table>
@@ -73,28 +57,58 @@
 export default {
   data() {
     return {
-      activeSection: 'dadosPessoais', // Seção padrão ao carregar a página
+      activeSection: 'dadosPessoais',
       dadosPessoais: {
+        ra: '',
         nome: '',
-        email: '',
-        telefone: '',
-        endereco: '',
-        cidade: '',
-        estado: ''
-      }
+        serie: ''
+      },
+      documentos: [] // Array para armazenar os documentos
     };
+  },
+  computed: {
+    serieFormatada() {
+      return this.dadosPessoais.serie ? `${this.dadosPessoais.serie}ª série` : '';
+    }
   },
   methods: {
     alterarFoto() {
       // Lógica para alterar a foto de perfil
     },
+    async fetchDadosPessoais() {
+      try {
+        const response = await fetch('http://localhost:3000/usuario/101');
+        const result = await response.json();
+        if (result.message === 'success') {
+          this.dadosPessoais.ra = result.data.ra;
+          this.dadosPessoais.nome = result.data.nome;
+          this.dadosPessoais.serie = result.data.serie;
+        }
+      } catch (error) {
+        console.error('Erro ao buscar dados pessoais:', error);
+      }
+    },
+    async fetchDocumentos() {
+      try {
+        const response = await fetch('http://localhost:3000/documentos/101');
+        const result = await response.json();
+        if (result.message === 'Disciplinas encontradas') {
+          this.documentos = result.data;
+        }
+      } catch (error) {
+        console.error('Erro ao buscar documentos:', error);
+      }
+    },
     salvarDadosPessoais() {
-      // Lógica para salvar os dados pessoais
       console.log(this.dadosPessoais);
     },
     sair() {
       this.$router.push({ name: 'loginAvap'});
     }
+  },
+  created() {
+    this.fetchDadosPessoais();
+    this.fetchDocumentos(); 
   }
 }
 </script>

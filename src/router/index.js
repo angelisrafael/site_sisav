@@ -4,8 +4,8 @@ import {createRouter, createWebHashHistory} from 'vue-router'
 const routes = [
   {
     path: '/',
-    redirect: 'loginForm',
-    component: () => import('../components/login.vue')
+    redirect: 'loginAvap',
+    component: () => import('../views/loginAvap.vue')
   },
   {
     path: '/cadastroCliente',
@@ -16,11 +16,6 @@ const routes = [
     path: '/atualizarCliente/:id',
     name: 'atualizarCliente',
     component: () => import('../components/cadastroCliente.vue')
-  },
-  {
-    path: '/login',
-    name: 'loginForm',
-    component: () => import('../components/login.vue')
   },
   {
     path: '/perfil',
