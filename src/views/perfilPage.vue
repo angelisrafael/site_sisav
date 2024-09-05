@@ -57,6 +57,7 @@
 export default {
   data() {
     return {
+      userRA: localStorage.getItem('userRA'),
       activeSection: 'dadosPessoais',
       dadosPessoais: {
         ra: '',
@@ -77,7 +78,7 @@ export default {
     },
     async fetchDadosPessoais() {
       try {
-        const response = await fetch('http://localhost:3000/usuario/101');
+        const response = await fetch('http://localhost:3000/usuario/' + this.userRA);
         const result = await response.json();
         if (result.message === 'success') {
           this.dadosPessoais.ra = result.data.ra;
@@ -90,7 +91,7 @@ export default {
     },
     async fetchDocumentos() {
       try {
-        const response = await fetch('http://localhost:3000/documentos/101');
+        const response = await fetch('http://localhost:3000/documentos/'  + this.userRA);
         const result = await response.json();
         if (result.message === 'Disciplinas encontradas') {
           this.documentos = result.data;

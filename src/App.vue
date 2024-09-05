@@ -6,6 +6,9 @@
     <button @click="pageAjuda" class="button">Ajuda</button>
     <button @click="pageSobre" class="button">Sobre</button>
     <img @click="telaPerfil" alt="Vue logo" class="image" src="./assets/iconMan.png">
+
+    <p>{{this.userRA}}</p>
+
   </header>
 
   <router-view></router-view>
@@ -15,6 +18,11 @@
 
 export default {
   name: 'App',
+  data() {
+    return {
+      userRA: localStorage.getItem('userRA')
+    };
+  },
   components: {},
   methods: {
     solicitacoes() {
