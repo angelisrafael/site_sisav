@@ -1,4 +1,4 @@
-# sitelocadora
+# FRONT
 
 ## Project setup
 ```
