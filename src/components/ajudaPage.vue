@@ -1,16 +1,20 @@
 <template>
   <div class="faq-container">
     <div class="button-container">
-      <button class="square-button">
-        <i class="fas fa-clock"></i>
-        <p style="font-size:10px"></p>
-        <span>Horário de Aulas</span>
-      </button>
-      <button class="square-button">
-        <i class="fas fa-map-marker-alt"></i>
-        <p style="font-size:10px"></p>
-        <span>Mapa UEM</span>
-      </button>
+      <router-link :to="{ path: '/telaPrincipal#horariosAula' }">
+        <button class="square-button">
+          <i class="fas fa-clock"></i>
+          <p style="font-size:10px"></p>
+          <span>Horário de Aulas</span>
+        </button>
+      </router-link>
+      <router-link :to="{ path: '/telaPrincipal#mapaUem' }">
+        <button class="square-button">
+          <i class="fas fa-map-marker-alt"></i>
+          <p style="font-size:10px"></p>
+          <span>Mapa UEM</span>
+        </button>
+      </router-link>
     </div>
     <h1 class="label-pgt-freq">Perguntas Frequentes</h1>
     <div v-for="(faq, index) in faqs" :key="index" class="faq-item">
@@ -33,18 +37,21 @@
     <div class="ajuda-online">
       <div class="card">
         <h3>Chat Online</h3>
-        <p>Aqui você pode conversar ao vivo com um de nossos atendentes.</p>
-        <button class="card-button">Iniciar Chat</button>
+        <p>Converse ao vivo com um atendente via WhatsApp para resolver suas dúvidas de forma rápida.</p>
+        <a href="https://wa.me/550000000000" target="_blank">
+          <button class="card-button">Iniciar Chat</button>
+        </a>
       </div>
       <div class="card">
         <h3>Ligação</h3>
-        <p>Se preferir, você pode nos ligar para obter suporte.</p>
-        <button class="card-button">Ligar Agora</button>
+        <p>Prefere conversar por telefone? Ligue para nós e receba suporte diretamente.</p>
+        <a href="https://wa.me/550000000000" target="_blank">
+          <button class="card-button">Ligar Agora</button>
+        </a>
       </div>
     </div>
     <div style="height: 80px"></div>
   </div>
-  
 </template>
 
 <script>
@@ -54,17 +61,17 @@ export default {
       faqs: [
         {
           question: "Como posso alterar minha senha?",
-          answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          answer: "Para alterar sua senha, ebtre em contato com o administrador da instituição.",
           showAnswer: false
         },
         {
           question: "Onde posso encontrar o histórico das minhas solicitações?",
-          answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          answer: "Você pode acessar o histórico de solicitações na seção 'Minhas Solicitações' no painel do usuário.",
           showAnswer: false
         },
         {
           question: "Como posso entrar em contato com o suporte?",
-          answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          answer: "Para falar com o suporte, utilize o chat online ou ligue para nosso número disponível na seção 'Ajuda Online'.",
           showAnswer: false
         }
       ],
@@ -137,7 +144,7 @@ export default {
 }
 
 .square-button i {
-  font-size: 24px; /* Tamanho do ícone */
+  font-size: 24px;
   margin-bottom: 5px;
 }
 

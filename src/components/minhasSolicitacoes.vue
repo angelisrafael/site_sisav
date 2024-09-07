@@ -32,18 +32,18 @@
       </table>
     </div>
 
-    <!-- Popup Modal para nova solicitação -->
     <div v-if="showPopup" class="popup-overlay">
       <div class="popup">
         <h2>Nova Solicitação</h2>
         <input v-model="novaSolicitacao.nome" type="text" placeholder="Nome da solicitação" />
-        <span v-if="erro" class="erro-msg">{{ erro }}</span> <!-- Mensagem de erro -->
+        <h6></h6>
+        <span v-if="erro" class="erro-msg">{{ erro }} </span>
+        <h6></h6> 
         <button @click="adicionarSolicitacao">Enviar</button>
         <button @click="closePopup">Fechar</button>
       </div>
     </div>
 
-    <!-- Popup Modal para confirmação de sucesso -->
     <div v-if="showSuccessPopup" class="popup-overlay">
       <div class="popup">
         <h2>Solicitação enviada com sucesso!</h2>
@@ -62,49 +62,46 @@ export default {
       userRA: localStorage.getItem('userRA'),
       currentView: '',
       solicitacoes: [],
-      showPopup: false, // Controle do primeiro pop-up
-      showSuccessPopup: false, // Controle do segundo pop-up de sucesso
+      showPopup: false, 
+      showSuccessPopup: false, 
       novaSolicitacao: {
         nome: ''
       },
-      erro: '' // Para exibir a mensagem de erro
+      erro: '' 
     };
   },
   watch: {
     currentView(newValue) {
       if (newValue === 'solicitacoes') {
-        this.fetchSolicitacoesData(); // Altere o nome da função para algo mais apropriado
+        this.fetchSolicitacoesData(); 
       }
     }
   },
   methods: {
     openPopup() {
       this.showPopup = true;
-      this.erro = ''; // Resetar mensagem de erro ao abrir popup
+      this.erro = ''; 
     },
     closePopup() {
       this.showPopup = false;
     },
     async adicionarSolicitacao() {
-      // Usando .trim() para remover espaços em branco
       if (!this.novaSolicitacao.nome.trim()) {
-        this.erro = 'Por favor, insira o nome da solicitação.'; // Mostrar mensagem de erro
+        this.erro = 'Por favor, insira o nome da solicitação.'; 
         return;
       }
 
       try {
-        // Requisição POST para a API
         const response = await axios.post('http://localhost:3000/solicitacoes', {
           nome_documento: this.novaSolicitacao.nome.trim(),
           ra_aluno: this.userRA
         });
 
-        // Verifica se a solicitação foi enviada com sucesso
         if (response.status === 200 || response.status === 201) {
-          // Após o envio bem-sucedido
-          this.novaSolicitacao.nome = ''; // Resetar o campo
-          this.closePopup(); // Fechar o primeiro pop-up
-          this.showSuccessPopup = true; // Abrir pop-up de sucesso
+         
+          this.novaSolicitacao.nome = ''; 
+          this.closePopup(); 
+          this.showSuccessPopup = true; 
         } else {
           console.error('Erro ao enviar solicitação:', response);
           this.erro = 'Erro ao enviar solicitação. Tente novamente.';
@@ -115,8 +112,8 @@ export default {
       }
     },
     fecharPopupDeSucesso() {
-      this.showSuccessPopup = false; // Fechar o pop-up de sucesso
-      this.currentView = 'solicitacoes'; // Redirecionar para "Minhas Solicitações"
+      this.showSuccessPopup = false; 
+      this.currentView = 'solicitacoes'; 
     },
     async fetchSolicitacoesData() {
       try {
@@ -135,10 +132,32 @@ export default {
 }
 </script>
 
-
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 80vh; 
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px; 
+}
+
+.table-container {
+  flex: 1; 
+  margin-top: 100px;
+  padding: 10px; 
+}
+
+.grade-table {
+  width: 100%; 
+  border-collapse: collapse;
+}
 
 .popup-overlay {
   position: fixed;
@@ -204,6 +223,7 @@ button {
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
+
 
 button:hover {
   background-color: #ea7474;

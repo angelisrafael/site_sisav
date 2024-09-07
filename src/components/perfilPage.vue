@@ -64,7 +64,7 @@ export default {
         nome: '',
         serie: ''
       },
-      documentos: [] // Array para armazenar os documentos
+      documentos: []
     };
   },
   computed: {
@@ -74,7 +74,6 @@ export default {
   },
   methods: {
     alterarFoto() {
-      // Lógica para alterar a foto de perfil
     },
     async fetchDadosPessoais() {
       try {

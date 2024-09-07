@@ -4,7 +4,6 @@
         <button :class="{ active: currentView === 'notasEFaltas' }" @click="currentView = 'notasEFaltas'">Notas e Faltas</button>
         <button :class="{ active: currentView === 'AAC' }" @click="currentView = 'AAC'">AAC</button>
         <button :class="{ active: currentView === 'historico' }" @click="currentView = 'historico'">Histórico Escolar</button>
-        <button :class="{ active: currentView === 'comprovante' }" @click="currentView = 'comprovante'">Comprov. de Matrícula</button>
     </div>
     <div v-if="currentView === 'notasEFaltas'" class="table-container"  id="notasEFaltas">
       <table class="grade-table">
@@ -68,16 +67,11 @@
             <td>{{ disciplina.nome_disciplina }}</td>
             <td>{{ disciplina.serie }}</td>
             <td>{{ disciplina.carga }}</td>
-            <td>{{ disciplina.media !== null ? disciplina.media : 'N/A' }}</td>
+            <td>{{ disciplina.media !== null ? disciplina.media : '---' }}</td>
             <td>{{ disciplina.situacao }}</td>
           </tr>
         </tbody>
       </table>
-    </div>
-
-    <div class="Button" v-if="currentView === 'comprovante'">
-        Comprovante de matrícula
-        <button>Fazer Download</button>
     </div>
   </div>
 </template>
@@ -90,7 +84,7 @@ export default {
   data() {
     return {
       userRA: localStorage.getItem('userRA'),
-      currentView: '', // Default view
+      currentView: '', 
       notasEFaltasData: [],
       aacData: [],
       historicoData: []

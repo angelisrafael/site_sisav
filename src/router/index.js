@@ -5,32 +5,22 @@ const routes = [
   {
     path: '/',
     redirect: 'loginAvap',
-    component: () => import('../views/loginAvap.vue')
-  },
-  {
-    path: '/cadastroCliente',
-    name: 'cadastroCliente',
-    component: () => import('../components/cadastroCliente.vue')
-  },
-  {
-    path: '/atualizarCliente/:id',
-    name: 'atualizarCliente',
-    component: () => import('../components/cadastroCliente.vue')
+    component: () => import('../components/loginAvap.vue')
   },
   {
     path: '/perfil',
     name: 'perfilForm',
-    component: () => import('../views/perfilPage.vue')
+    component: () => import('../components/perfilPage.vue')
   },
   {
     path: '/loginAvap',
     name: 'loginAvap',
-    component: () => import('../views/loginAvap.vue')
+    component: () => import('../components/loginAvap.vue')
   },
   {
     path: '/ajudaPage',
     name: 'ajudaPage',
-    component: () => import('../views/ajudaPage.vue')
+    component: () => import('../components/ajudaPage.vue')
   },
   {
     path: '/telaConsulta',
@@ -41,21 +31,6 @@ const routes = [
     path: '/telaPrincipal',
     name: 'telaPrincipal',
     component: () => import('../components/telaPrincipal.vue')
-  },
-  {
-    path: '/cadastroUsuario',
-    name: 'cadastroUsuario',
-    component: () => import('../components/cadastroUsuario.vue')
-  },
-  {
-    path: '/cadastroLocacao',
-    name: 'cadastroLocacao',
-    component: () => import('../components/cadastroLocacao.vue')
-  },
-  {
-    path: '/atualizarLocacao/:id',
-    name: 'atualizarLocacao',
-    component: () => import('../components/cadastroLocacao.vue')
   },
   {
     path: '/pageSobre',
