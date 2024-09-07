@@ -5,9 +5,10 @@
     <button @click="solicitacoes" class="button">Solicitações</button>
     <button @click="pageAjuda" class="button">Ajuda</button>
     <button @click="pageSobre" class="button">Sobre</button>
+    <p class="raAluno">RA {{this.userRA}}</p>
     <img @click="telaPerfil" alt="Vue logo" class="image" src="./assets/iconMan.png">
 
-    <p>{{this.userRA}}</p>
+    
 
   </header>
 
@@ -131,6 +132,10 @@ footer {
 .image {
   margin-left: auto; 
   width: 40px;
+}
+
+.raAluno {
+  margin-left: auto; 
 }
 
 .imageLogo {

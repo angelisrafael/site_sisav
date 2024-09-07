@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="buttons">
-      <button :class="{ active: currentView === 'novas' }" @click="currentView = 'novas'">Novas</button>
-        <button :class="{ active: currentView === 'solicitacoes' }" @click="currentView = 'solicitacoes'">Minhas Solicitações</button>
+      <button :class="{ active: currentView === 'novas' }" @click="openPopup">Novas</button>
+      <button :class="{ active: currentView === 'solicitacoes' }" @click="currentView = 'solicitacoes'">Minhas Solicitações</button>
     </div>
 
     <div class="table-container">
@@ -11,7 +11,7 @@
           <table class="grade-table">
             <thead>
               <tr>
-                <th>Cód da disciplina.</th>
+                <th>Cód da solicitação</th>
                 <th>Nome do documento</th>
                 <th>Data</th>
                 <th>Solicitado por</th>
@@ -31,8 +31,28 @@
         </div>
       </table>
     </div>
+
+    <!-- Popup Modal para nova solicitação -->
+    <div v-if="showPopup" class="popup-overlay">
+      <div class="popup">
+        <h2>Nova Solicitação</h2>
+        <input v-model="novaSolicitacao.nome" type="text" placeholder="Nome da solicitação" />
+        <span v-if="erro" class="erro-msg">{{ erro }}</span> <!-- Mensagem de erro -->
+        <button @click="adicionarSolicitacao">Enviar</button>
+        <button @click="closePopup">Fechar</button>
+      </div>
+    </div>
+
+    <!-- Popup Modal para confirmação de sucesso -->
+    <div v-if="showSuccessPopup" class="popup-overlay">
+      <div class="popup">
+        <h2>Solicitação enviada com sucesso!</h2>
+        <button @click="fecharPopupDeSucesso">Fechar</button>
+      </div>
+    </div>
   </div>
 </template>
+
 
 <script>
 import axios from 'axios';
@@ -42,25 +62,70 @@ export default {
       userRA: localStorage.getItem('userRA'),
       currentView: '',
       solicitacoes: [],
+      showPopup: false, // Controle do primeiro pop-up
+      showSuccessPopup: false, // Controle do segundo pop-up de sucesso
+      novaSolicitacao: {
+        nome: ''
+      },
+      erro: '' // Para exibir a mensagem de erro
     };
   },
   watch: {
     currentView(newValue) {
       if (newValue === 'solicitacoes') {
-        this.fetchNotasEFaltasData();
+        this.fetchSolicitacoesData(); // Altere o nome da função para algo mais apropriado
       }
     }
   },
   methods: {
-    async fetchNotasEFaltasData() {
+    openPopup() {
+      this.showPopup = true;
+      this.erro = ''; // Resetar mensagem de erro ao abrir popup
+    },
+    closePopup() {
+      this.showPopup = false;
+    },
+    async adicionarSolicitacao() {
+      // Usando .trim() para remover espaços em branco
+      if (!this.novaSolicitacao.nome.trim()) {
+        this.erro = 'Por favor, insira o nome da solicitação.'; // Mostrar mensagem de erro
+        return;
+      }
+
+      try {
+        // Requisição POST para a API
+        const response = await axios.post('http://localhost:3000/solicitacoes', {
+          nome_documento: this.novaSolicitacao.nome.trim(),
+          ra_aluno: this.userRA
+        });
+
+        // Verifica se a solicitação foi enviada com sucesso
+        if (response.status === 200 || response.status === 201) {
+          // Após o envio bem-sucedido
+          this.novaSolicitacao.nome = ''; // Resetar o campo
+          this.closePopup(); // Fechar o primeiro pop-up
+          this.showSuccessPopup = true; // Abrir pop-up de sucesso
+        } else {
+          console.error('Erro ao enviar solicitação:', response);
+          this.erro = 'Erro ao enviar solicitação. Tente novamente.';
+        }
+      } catch (error) {
+        console.error('Erro ao adicionar solicitação:', error);
+        this.erro = 'Erro ao enviar solicitação. Tente novamente.';
+      }
+    },
+    fecharPopupDeSucesso() {
+      this.showSuccessPopup = false; // Fechar o pop-up de sucesso
+      this.currentView = 'solicitacoes'; // Redirecionar para "Minhas Solicitações"
+    },
+    async fetchSolicitacoesData() {
       try {
         const response = await axios.get('http://localhost:3000/solicitacoes/' + this.userRA);
         this.solicitacoes = response.data.data;
       } catch (error) {
-        console.error('Erro ao buscar dados de Notas e Faltas:', error);
+        console.error('Erro ao buscar dados de solicitações:', error);
       }
-    },
-
+    }
   },
 
   name: 'minhasSolicitacoes',
@@ -70,8 +135,55 @@ export default {
 }
 </script>
 
+
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 400px;
+  text-align: center;
+}
+
+.popup input {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.popup button {
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.erro-msg {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.mensagem-sucesso {
+  color: green;
+  font-size: 18px;
+  margin-top: 20px;
+  text-align: center;
+}
+
 .buttons {
   display: flex;
   justify-content: center;
@@ -101,7 +213,7 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20vh;
+  height: 450px;
 }
 
 .grade-table {
