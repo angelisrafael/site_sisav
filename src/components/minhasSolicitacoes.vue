@@ -137,7 +137,7 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-  height: 80vh; 
+  height: 40vh; 
 }
 
 .buttons {
@@ -150,7 +150,6 @@ export default {
 
 .table-container {
   flex: 1; 
-  margin-top: 100px;
   padding: 10px; 
 }
 
